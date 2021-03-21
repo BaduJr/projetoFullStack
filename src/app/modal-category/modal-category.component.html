@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>New Category</h1>
+<form [formGroup]="categoryForm">
+  
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput required ng-maxlength="5" formControlName="name">
+    </mat-form-field>
+    <mat-error *ngIf="categoryForm.get('name').errors?.required">
+      Name is required
+    </mat-error>
+    <mat-error *ngIf="categoryForm.get('name').errors?.maxlength">
+      Max length is 128
+    </mat-error>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelOnClick()">Cancel</button>
+    <button [disabled]="categoryForm.invalid" mat-button cdkFocusInitial (click)="saveOnClick()">Save</button>
+  </div>
+</form>

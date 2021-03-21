@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>New Device</h1>
+
+<form [formGroup]="deviceForm">
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select required [(value)]="category" formControlName="idCategory">
+        <mat-option *ngFor="let category of dataSource" [value]="category.id">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-error *ngIf="deviceForm.get('idCategory').errors?.required">
+      Category is required
+    </mat-error>
+
+    <mat-form-field>
+      <mat-label>Color</mat-label>
+      <input ng-model="name" matInput required ng-maxlength="5" autocomplete="false" formControlName="color">
+    </mat-form-field>
+    <mat-error *ngIf="deviceForm.get('color').errors?.required">
+      Color is required
+    </mat-error>
+    <mat-error *ngIf="deviceForm.get('color').errors?.maxlength">
+      Max length is 16
+    </mat-error>
+    <mat-error *ngIf="deviceForm.get('color').errors?.pattern">
+      Only letters
+    </mat-error>
+
+    <mat-form-field>
+      <mat-label>Part Number</mat-label>
+      <input ng-model="name" matInput required ng-maxlength="5" formControlName="partNumber">
+    </mat-form-field>
+    <mat-error *ngIf="deviceForm.get('partNumber').errors?.required">
+      Part Number is required
+    </mat-error>
+    <mat-error *ngIf="deviceForm.get('partNumber').errors?.pattern">
+      Only positive numbers
+    </mat-error>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelOnClick()">Cancel</button>
+    <button mat-button [disabled]="deviceForm.invalid" cdkFocusInitial (click)="saveOnClick()">Save</button>
+  </div>
+</form>
