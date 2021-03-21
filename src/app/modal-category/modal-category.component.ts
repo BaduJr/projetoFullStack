@@ -39,10 +39,8 @@ export class ModalCategoryComponent implements OnInit {
   }
 
   saveOnClick(): void {
-    console.log(this.categoryForm.value);
     this.categoryService.save(this.categoryForm.value).subscribe(
       res => {
-        console.log(res);
         this.cancelOnClick();
         location.reload()
       }

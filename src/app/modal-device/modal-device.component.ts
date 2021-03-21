@@ -61,10 +61,8 @@ export class ModalDeviceComponent implements OnInit {
   }
 
   saveOnClick(): void {
-    console.log(this.deviceForm.value);
     this.deviceService.save(this.deviceForm.value).subscribe(
       res => {
-        console.log(res);
         this.cancelOnClick();
         location.reload()
       }
